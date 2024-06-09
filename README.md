@@ -9,6 +9,7 @@ A prototype of Dating app.
 - Docker
 - [wire](https://github.com/google/wire) – dependency injection
 - [goose](https://github.com/pressly/goose) – database migration tool
+- [Testify](github.com/stretchr/testify) - test framework
 
 ## How to Run
 
@@ -46,7 +47,6 @@ migrations/         database migration in .sql file format
 pkg/                generic utility package, decoupled from the app
 ```
 
-
 ## Postman
 API request & response document
 
@@ -70,3 +70,7 @@ Create new migration command
 cd migrations
 goose -s create <file_name> sql
 ```
+
+## Unit Test
+When possible please use test table format for unit testing.
+Generate mocks by running `make gen-mock` command.

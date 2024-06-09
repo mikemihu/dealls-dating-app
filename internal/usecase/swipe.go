@@ -3,20 +3,16 @@ package usecase
 import (
 	"context"
 	"dealls-dating-app/internal"
-	"dealls-dating-app/internal/config"
 	"dealls-dating-app/internal/constant"
 	"dealls-dating-app/internal/entity"
 	"errors"
 
 	"github.com/google/uuid"
-	"github.com/redis/go-redis/v9"
 	"go.uber.org/zap"
 )
 
 type SwipeUC struct {
-	cfg         *config.Cfg
 	logger      *zap.Logger
-	redis       *redis.Client
 	profileRepo internal.ProfileRepo
 	likeRepo    internal.LikeRepo
 	swipeRepo   internal.SwipeRepo
@@ -24,18 +20,14 @@ type SwipeUC struct {
 }
 
 func NewSwipeUC(
-	cfg *config.Cfg,
 	logger *zap.Logger,
-	redis *redis.Client,
 	profileRepo internal.ProfileRepo,
 	likeRepo internal.LikeRepo,
 	swipeRepo internal.SwipeRepo,
 	userUC internal.UserUC,
 ) internal.SwipeUC {
 	return &SwipeUC{
-		cfg:         cfg,
 		logger:      logger,
-		redis:       redis,
 		profileRepo: profileRepo,
 		likeRepo:    likeRepo,
 		swipeRepo:   swipeRepo,

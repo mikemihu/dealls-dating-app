@@ -1,0 +1,57 @@
+direction: right
+
+users: {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  email: text
+  password: text
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+profiles: {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  user_id: uuid {constraint: [foreign_key; unique]}
+  name: text
+  gender: enum(male,female)
+  bio: text
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+packages: {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  name: text
+  is_unlimited_swipe: bool
+  is_verified: bool
+  price: number
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+user_packages: {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  user_id: uuid {constraint: foreign_key}
+  package_id: uuid {constraint: foreign_key}
+  expired_at: timestamp
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+likes: {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  user_id: uuid {constraint: foreign_key}
+  target_user_id: uuid {constraint: foreign_key}
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+profiles.user_id -> users.id
+user_packages.package_id -> packages.id
+user_packages.user_id -> users.id
+likes.user_id -> users.id
+likes.target_user_id -> users.id

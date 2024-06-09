@@ -1,0 +1,24 @@
+{
+  "app": {
+    "address": ":3000",
+    "rateLimit": 100
+  },
+  "storage": {
+    "postgres": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "dealls",
+      "user": "dealls",
+      "password": "password"
+    },
+    "redis": {
+      "address": "localhost:6379",
+      "password": ""
+    }
+  },
+  "auth": {
+    "jwt": {
+      "secret": "jwt-secret"
+    }
+  }
+}

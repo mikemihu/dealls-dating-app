@@ -1,0 +1,31 @@
+direction: right
+
+swiping: User looking for matched {
+    shape: sequence_diagram
+    mobile: Mobile App
+    service: App Service
+    redis: Redis
+    db: Database
+
+    Looking for next profile: {
+        mobile.profile -> service.profile: GET next profile
+        service.profile -> redis.swiped: get today's swiped profile
+        service.profile <- redis.swiped: retrieve profiles
+        service.profile -> service.profile: check user's swipe limit from context
+        limit exceeded: "(If swipe limit exceeded)" {
+            mobile.profile <- service.profile: returns error limit reached
+        }
+        service.profile -> db.next: query next profile\n(exclude today's swiped & liked profiles)
+        service.profile <- db.next: retrieve profile
+        service.profile -> redis.next_swiped: add today's swiped profile
+        mobile.profile <- service.profile: returns next profile
+    }
+
+    User swipe like : {
+        mobile.like -> service.like: POST liked profile
+        service.like -> db.like: store liked profile
+        service.like -> db.reverse: find mutual liked profile
+        service.like <- db.reverse: retrieve record if any
+        mobile.like <- service.like: returns matched or not matched status
+    }
+}

@@ -6,7 +6,7 @@ help: ## show this help
 wire: ## Generate wire
 	@go generate ./internal/provider/.
 
-run: ## Run the REST app
+run: ## Run the app
 	@go run ./cmd/.
 
 test: ## Run unit test with coverage info
@@ -14,12 +14,15 @@ test: ## Run unit test with coverage info
 
 GOOSE_DBSTRING="host=127.0.0.1 port=5432 user=dealls password=password dbname=dealls sslmode=disable"
 
-migrate: ## Run db migrations up
+migrate: ## Run db migration up
 	@GOOSE_DRIVER=postgres \
  	GOOSE_DBSTRING=$(GOOSE_DBSTRING) \
  	goose -dir migrations up
 
-migrate-down: ## Run db migrations down
+migrate-down: ## Run db migration down
 	@GOOSE_DRIVER=postgres \
  	GOOSE_DBSTRING=$(GOOSE_DBSTRING) \
  	goose -dir migrations down
+
+gen-mock: ## Generate mocks
+	@go generate ./mocks/.

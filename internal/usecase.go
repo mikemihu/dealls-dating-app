@@ -20,3 +20,12 @@ type UserUC interface {
 	// BuyPackage activates user's package
 	BuyPackage(ctx context.Context, req entity.BuyPackageRequest) error
 }
+
+type ProfileUC interface {
+	// GetList returns all profile
+	GetList(ctx context.Context, filter entity.ProfileFilter) ([]entity.Profile, error)
+	// Get returns single profile
+	Get(ctx context.Context, filter entity.ProfileFilter) (entity.Profile, error)
+	// Update updates profile
+	Update(ctx context.Context, req entity.ProfileUpdateRequest) error
+}

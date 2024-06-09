@@ -12,3 +12,8 @@ type UserDelivery interface {
 	// BuyPackage activates package
 	BuyPackage(c echo.Context) error
 }
+
+type ProfileDelivery interface {
+	// Update updates profile info
+	Update(c echo.Context) error
+}

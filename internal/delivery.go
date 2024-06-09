@@ -17,3 +17,15 @@ type ProfileDelivery interface {
 	// Update updates profile info
 	Update(c echo.Context) error
 }
+
+type SwipeDelivery interface {
+	// NextProfile returns next profile to swipe
+	NextProfile(c echo.Context) error
+	// Like marks target user as liked, returns matched status
+	Like(c echo.Context) error
+}
+
+type LikeDelivery interface {
+	// MutualList returns mutual list
+	MutualList(c echo.Context) error
+}

@@ -15,4 +15,6 @@ var (
 	ErrUserNotFound    = errors.New("user not found")
 
 	// Business Errors
+
+	ErrSwipeLimitReached = errors.New("swipe limit reached")
 )

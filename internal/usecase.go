@@ -29,3 +29,15 @@ type ProfileUC interface {
 	// Update updates profile
 	Update(ctx context.Context, req entity.ProfileUpdateRequest) error
 }
+
+type LikeUC interface {
+	// MutualList returns all mutual liked profiles
+	MutualList(ctx context.Context, req entity.MutualListRequest) (entity.MutualListResponse, error)
+}
+
+type SwipeUC interface {
+	// NextProfile returns next profile to swipe
+	NextProfile(ctx context.Context, req entity.NextProfileRequest) (entity.NextProfileResponse, error)
+	// Like marks target user as liked, returns matched status
+	Like(ctx context.Context, req entity.SwipeRequest) (entity.SwipeResponse, error)
+}

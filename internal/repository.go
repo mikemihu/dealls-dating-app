@@ -30,3 +30,17 @@ type PackageRepo interface {
 	// Store create new package record or update if id provided, will return affected id
 	Store(ctx context.Context, pkg entity.Package) (uuid.UUID, error)
 }
+
+type LikeRepo interface {
+	// Get gets multiple or single row if id provided
+	Get(ctx context.Context, filter entity.LikeFilter) ([]entity.Like, error)
+	// Store create new like record or update if id provided, will return affected id
+	Store(ctx context.Context, like entity.Like) (uuid.UUID, error)
+}
+
+type SwipeRepo interface {
+	// Store stores a swipe record
+	Store(ctx context.Context, userID uuid.UUID, targetUserID uuid.UUID) error
+	// TodayProfiles gets all userIDs that swiped today
+	TodayProfiles(ctx context.Context, userID uuid.UUID) (uuid.UUIDs, error)
+}

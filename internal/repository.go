@@ -23,3 +23,10 @@ type ProfileRepo interface {
 	// Store create new profile record or update if id provided, will return affected id
 	Store(ctx context.Context, profile entity.Profile) (uuid.UUID, error)
 }
+
+type PackageRepo interface {
+	// Get gets multiple or single row if id provided
+	Get(ctx context.Context, filter entity.PackageFilter) ([]entity.Package, error)
+	// Store create new package record or update if id provided, will return affected id
+	Store(ctx context.Context, pkg entity.Package) (uuid.UUID, error)
+}
